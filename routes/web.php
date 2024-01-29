@@ -36,6 +36,8 @@ Auth::routes();
 
 
             Route::prefix('produits')->group(function () { 
+                Route::post('/import', [ProduitsController::class, 'importexcel'])->name('admin.produits.importexcel');
+
                 Route::get('/', [ProduitsController::class, 'index'])->name('admin.produits');
                 Route::post('/', [ProduitsController::class, 'store'])->name('admin.produits.store');
                 Route::get('/add', [ProduitsController::class, 'create'])->name('admin.produits.create');

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Produits;
 use App\Models\Categories;
 use App\Models\Matieres;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use Purifier;
 
 class ProduitsController extends Controller
@@ -24,6 +25,51 @@ class ProduitsController extends Controller
         }
     }
 
+
+    public function importexcel(Request $request){  
+        if(isset($_FILES['import_file'])){
+            
+            $file = $_FILES['import_file']['tmp_name'];
+
+    // Create a reader for the file
+            $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReaderForFile($file);
+            $spreadsheet = $reader->load($file);
+            $sheet = $spreadsheet->getActiveSheet();
+            $cells = $sheet->getCellCollection();
+
+            // $cells = $spreadsheet->getSheetName('sheetnamw')->getCellCollection();
+            for($row=3;$row <=$cells->getHighestRow();$row ++){
+                $arry[$row]['reference']=($cells->get('A'.$row)) ? ($cells->get('A'.$row))->getValue() : '' ;
+                $arry[$row]['designation']=($cells->get('B'.$row)) ? ($cells->get('B'.$row))->getValue() : '' ;
+                $arry[$row]['quantite']=($cells->get('C'.$row)) ? ($cells->get('C'.$row))->getValue() : '' ;
+                $arry[$row]['image']=($cells->get('D'.$row)) ? ($cells->get('D'.$row))->getValue() : '' ;
+                $arry[$row]['categorie_name']=($cells->get('E'.$row)) ? ($cells->get('E'.$row))->getValue() : '' ;
+                $arry[$row]['matiere_name']=($cells->get('F'.$row)) ? ($cells->get('F'.$row))->getValue() : '' ;
+                $arry[$row]['prix_achat_gramme']=($cells->get('G'.$row)) ? ($cells->get('G'.$row))->getValue() : '' ;
+                $arry[$row]['prix_vente_gramme']=($cells->get('H'.$row)) ? ($cells->get('H'.$row))->getValue() : '' ;
+                $arry[$row]['poids_gramme']=($cells->get('I'.$row)) ? ($cells->get('I'.$row))->getValue() : '' ;
+                $arry[$row]['remise_max']=($cells->get('J'.$row)) ? ($cells->get('J'.$row))->getValue() : '' ;
+            }
+            foreach ($arry as $row) {
+                $produit = new Produits([
+                    'reference' => $row['reference'],
+                    'designation' => $row['designation'],
+                    'quantite' => $row['quantite'],
+                    'image' => '',
+                    'categorie_id' => Categories::where('name', $row['categorie_name'])->value('id'),
+                    'matiere_id' => Matieres::where('name', $row['matiere_name'])->value('id'),
+                    'prix_achat_gramme' => $row['prix_achat_gramme'],
+                    'prix_vente_gramme' => $row['prix_vente_gramme'],
+                    'poids_gramme' => $row['poids_gramme'],
+                    'remise_max' => $row['remise_max'],
+                ]);
+
+                $produit->save();
+            }
+            return redirect()->back();
+        }
+
+    }
 
     public function getProduits()
     {
@@ -140,7 +186,7 @@ class ProduitsController extends Controller
         return ['success'=>true, 'message'=>'updated succesfuly'];
     }
 
-
+    
     public function archive($id)
     {
         $produit = Produits::find($id);
@@ -155,6 +201,8 @@ class ProduitsController extends Controller
         return ['success'=>true, 'message'=>'archived succesfuly'];
     }
     
+
+
     public function archiveall(Request $request)
     {
         $produit_id_array = $request->input('id');

@@ -12,7 +12,7 @@
             <div class="modal-body">
                     <div class="col-12 col-lg-6">
                         <h5 class="mb-2 text-1000"> * Quantite  {{$produit->quantite}}  </h5>
-                        <h5 class="mb-2 text-1000"> * id  {{$produit->id}}  </h5>
+                        <h5 class="mb-2 text-1000"> * id  {{$produit->reference}}  </h5>
                         <input class="form-control"  id="quantite" name="quantite" placeholder="1" type="number" min="1" max="{{$produit->quantite}}"/>
                         <input type="number" id="produit_id" readonly name="produit_id" value="{{$produit->id}}" min="0" style="display: none;" class="form-control">
                     </div>
@@ -20,8 +20,7 @@
                                             <h5 class="mb-2 text-1000">Prix par gramme : {{$produit->prix_vente_gramme}} $ </h5>
                                         </div>
 
-                          {{-- <h5 class="mb-2 text-1000"> {{$produit->prix_vente_gramme  }}</h5> --}}
-                        {{-- <input type="text" id="total" name="total" readonly class="form-control"> --}}
+                       
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary" >Confirm</button>

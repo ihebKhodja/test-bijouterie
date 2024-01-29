@@ -26,20 +26,59 @@
 @section('content')
 
 
-<div class="content">
+<div class="content ">
         
-
+        <nav class="mb-2" aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="#!">Page 1</a></li>
+            <li class="breadcrumb-item"><a href="#!">Page 2</a></li>
+            <li class="breadcrumb-item active">Default</li>
+          </ol>
+        </nav>
         <div class="mb-9">
-          <div class="row g-3 mb-4">
+          <div class="row g-3 mb-1">
             <div class="col-auto">
               <h2 class="mb-0">Products</h2>
             </div>
           </div>
-          
+          <div class="mb-1">
+              <div class="row g-3">
+                
+                {{-- <div class="col-auto">
+                  
+                  {{-- <div class="search-box">
+                    
+                  </div> --}}
+                {{-- </div> --}} 
                 <div class="col-auto">
                   <button class="btn btn-primary" onclick="window.location='{{ route('admin.produits.create') }}'"id="addBtn"><span class="fas fa-plus me-2"></span>Add product</button>
                 </div>
+                <div class="col-auto">
+                  <form  class="form " method="POST" action="{{route('admin.produits.importexcel')}}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group d-flex align-items-center">
+                        <input type="submit" value="Import File" name="import_file_btn" class="btn btn-secondary mr-2">
+                        <input type="file"  name="import_file"  class="form-control input-sm" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                      </div>
+                  </form>
+                </div>
+                <div class="col-auto scrollbar overflow-hidden-y flex-grow-1">
+                    <div class="btn-group position-static" role="group">
+                      <div class="btn-group position-static text-nowrap">
+                      
+                      </div>
+                    <div class="btn-group position-static text-nowrap">
+                      
+                    </div>
+                </div>
+                
               </div>
+            </div>
+            
+            <div class="col-auto">
+              {{-- <button class="btn btn-primary" onclick="window.location='{{ route('admin.produits.create') }}'"id="addBtn"><span class="fas fa-plus me-2"></span>Add product</button> --}}
+            </div>
+          </div>
             </div>
             <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1">
               <div class="table-responsive scrollbar mx-n1 px-1">
@@ -108,11 +147,12 @@
               dom: 'Bfrtip',
               buttons: [
                 { extend: 'excel',
-                  title: 'La Liste des produits', // Title inside the PDF
-                  filename: 'La Liste des produits', // Name of the downloaded file
+                    text: 'Export to Excel',  
+                  title: 'La Liste des produits', 
+                  filename: 'La Liste des produits', 
                   autoFilter: true,
                   exportOptions: {
-                      columns: ':not(:last-child)' // Export all columns except the last one
+                      columns: ':not(:last-child)' 
                   }}
               ],  
             'columns': [
@@ -193,13 +233,13 @@
               data:{rowid,  _token: '{{csrf_token()}}' },
               success:function(data){
                 if(data.success){
-                console.log('success archive')
+                console.log('success dsarchive')
                 table.ajax.reload();
                 table.draw();
                 modalDel.modal('hide')
                 rowid=null;
                 }else{
-                  alert('archive failed')
+                  console.log('archive failed')
                 }
                 }
               })
