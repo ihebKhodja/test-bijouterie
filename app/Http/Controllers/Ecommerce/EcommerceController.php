@@ -11,7 +11,7 @@ class EcommerceController extends Controller
     public function index(){
             $produits = Produits::with(['categorie', 'matiere'])
                         ->where('quantite', '>', 0)
-                        ->paginate(2);
+                        ->paginate(10);
 
         return view('ecommerce.index', ['produits'=>$produits]);
 

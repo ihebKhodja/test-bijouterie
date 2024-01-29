@@ -44,23 +44,20 @@
           <div class="mb-1">
               <div class="row g-3">
                 
-                {{-- <div class="col-auto">
-                  
-                  {{-- <div class="search-box">
-                    
-                  </div> --}}
-                {{-- </div> --}} 
+                
                 <div class="col-auto">
                   <button class="btn btn-primary" onclick="window.location='{{ route('admin.produits.create') }}'"id="addBtn"><span class="fas fa-plus me-2"></span>Add product</button>
                 </div>
                 <div class="col-auto">
-                  <form  class="form " method="POST" action="{{route('admin.produits.importexcel')}}" enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group d-flex align-items-center">
+                  @can('export excel')
+                    <form  class="form " method="POST" action="{{route('admin.produits.importexcel')}}" enctype="multipart/form-data">
+                      @csrf
+                      <div class="form-group d-flex align-items-center">
                         <input type="submit" value="Import File" name="import_file_btn" class="btn btn-secondary mr-2">
                         <input type="file"  name="import_file"  class="form-control input-sm" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                       </div>
-                  </form>
+                    </form>
+                  @endcan
                 </div>
                 <div class="col-auto scrollbar overflow-hidden-y flex-grow-1">
                     <div class="btn-group position-static" role="group">
