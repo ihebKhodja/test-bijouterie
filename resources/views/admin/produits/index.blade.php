@@ -49,7 +49,7 @@
                   <button class="btn btn-primary" onclick="window.location='{{ route('admin.produits.create') }}'"id="addBtn"><span class="fas fa-plus me-2"></span>Add product</button>
                 </div>
                 <div class="col-auto">
-                  @can('export excel')
+                  @can('import excel')
                     <form  class="form " method="POST" action="{{route('admin.produits.importexcel')}}" enctype="multipart/form-data">
                       @csrf
                       <div class="form-group d-flex align-items-center">
@@ -97,11 +97,14 @@
                   </thead>
                     @can('archive product') 
                     @can('edit product')
-                          @include('flash::message')
-
-                      <tbody>
-                      </tbody>
+                    @can('export excel')
                       
+                    @include('flash::message')
+                    
+                    <tbody>
+                    </tbody>
+                    
+                    @endcan
                       @endcan
                     @endcan
                   </table>
