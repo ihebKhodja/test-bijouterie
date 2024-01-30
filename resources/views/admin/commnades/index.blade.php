@@ -2,17 +2,22 @@
 
 @section('stylesheet')
 
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-
-
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+<link href="../../../vendors/flatpickr/flatpickr.min.css" rel="stylesheet">
+<link href="../../../vendors/choices/choices.min.css" rel="stylesheet">
+
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 
 
 @endsection
@@ -87,8 +92,23 @@
       </div>
 
 @endsection
-@section('script')
-<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+  @section('script')
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="../../../vendors/popper/popper.min.js"></script>
+  <script src="../../../vendors/bootstrap/bootstrap.min.js"></script>
+  <script src="../../../vendors/anchorjs/anchor.min.js"></script>
+  <script src="../../../vendors/is/is.min.js"></script>
+  <script src="../../../vendors/fontawesome/all.min.js"></script>
+  <script src="../../../vendors/lodash/lodash.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+  <script src="../../../vendors/feather-icons/feather.min.js"></script>
+  <script src="../../../vendors/dayjs/dayjs.min.js"></script>
+  <script src="../../../vendors/choices/choices.min.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+  <script src="../../../assets/js/phoenix.js"></script>
+  {{-- <script src="../../../vendors/list.js/list.min.js"></script> --}}
 
     <script>
     $(document).ready( function () {
@@ -132,6 +152,7 @@
         var selectedValue = $(this).val();
         console.log("Selected Value: ", selectedValue);
     });
+
      btnChange.click(function(){
             var updateId = form.find('input[name="id"]').val()
             console.log(updateId)
@@ -150,8 +171,6 @@
                     table.draw();
                     rowid=null;
                     modal.modal('hide')
-                  }else{
-                    alert('Update failed')
                   }
                 }
              }); //end ajax
@@ -161,23 +180,6 @@
         
       });
       
-      </script> 
-    
-    {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script> --}}
-
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script> --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="../../../vendors/popper/popper.min.js"></script>
-    <script src="../../../vendors/bootstrap/bootstrap.min.js"></script>
-    <script src="../../../vendors/anchorjs/anchor.min.js"></script>
-    <script src="../../../vendors/is/is.min.js"></script>
-    <script src="../../../vendors/fontawesome/all.min.js"></script>
-    <script src="../../../vendors/lodash/lodash.min.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
-    <script src="../../../vendors/list.js/list.min.js"></script>
-    <script src="../../../vendors/feather-icons/feather.min.js"></script>
-    <script src="../../../vendors/dayjs/dayjs.min.js"></script>
-    <script src="../../../assets/js/phoenix.js"></script>
+    </script>
 
 @endsection

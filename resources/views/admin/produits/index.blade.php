@@ -3,30 +3,27 @@
 
 @section('stylesheet')
 
-
-<!-- Bootstrap -->
-
-<!-- Fonts -->
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+<link href="../../../vendors/flatpickr/flatpickr.min.css" rel="stylesheet">
+<link href="../../../vendors/choices/choices.min.css" rel="stylesheet">
 
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+ 
 
 @endsection
 
 @section('content')
 
 
-<div class="content ">
+<div class="content">
         
         <nav class="mb-2" aria-label="breadcrumb">
           <ol class="breadcrumb mb-0">
@@ -73,7 +70,6 @@
             </div>
             
             <div class="col-auto">
-              {{-- <button class="btn btn-primary" onclick="window.location='{{ route('admin.produits.create') }}'"id="addBtn"><span class="fas fa-plus me-2"></span>Add product</button> --}}
             </div>
           </div>
             </div>
@@ -99,10 +95,10 @@
                     @can('edit product')
                     @can('export excel')
                       
-                    @include('flash::message')
-                    
-                    <tbody>
-                    </tbody>
+                      @include('flash::message')
+                      
+                      <tbody>
+                      </tbody>
                     
                     @endcan
                       @endcan
@@ -130,9 +126,29 @@
     <!--    JavaScripts-->
     <!-- ===============================================-->
   @section('script')
- 
-    
-    <script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="../../../vendors/list.js/list.min.js"></script>
+  <script src="../../../vendors/popper/popper.min.js"></script>
+  <script src="../../../vendors/bootstrap/bootstrap.min.js"></script>
+  <script src="../../../vendors/anchorjs/anchor.min.js"></script>
+  <script src="../../../vendors/is/is.min.js"></script>
+  <script src="../../../vendors/fontawesome/all.min.js"></script>
+  <script src="../../../vendors/lodash/lodash.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+  <script src="../../../vendors/feather-icons/feather.min.js"></script>
+  <script src="../../../vendors/dayjs/dayjs.min.js"></script>
+  <script src="../../../vendors/choices/choices.min.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+  <script src="../../../assets/js/phoenix.js"></script>
+
+  <script>
 
     $(document).ready( function () {
 
@@ -254,27 +270,6 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
-    <script src="../../../vendors/popper/popper.min.js"></script>
-    <script src="../../../vendors/bootstrap/bootstrap.min.js"></script>
-    <script src="../../../vendors/anchorjs/anchor.min.js"></script>
-    <script src="../../../vendors/is/is.min.js"></script>
-    <script src="../../../vendors/fontawesome/all.min.js"></script>
-    <script src="../../../vendors/lodash/lodash.min.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
-    <script src="../../../vendors/list.js/list.min.js"></script>
-    <script src="../../../vendors/feather-icons/feather.min.js"></script>
-    <script src="../../../vendors/dayjs/dayjs.min.js"></script>
-    <script src="../../../assets/js/phoenix.js"></script>
-  <script src="../../../vendors/choices/choices.min.js"></script>
-    
     
     @endsection

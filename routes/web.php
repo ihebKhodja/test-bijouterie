@@ -22,6 +22,8 @@ use App\Http\Controllers\Ecommerce\EcommerceController;
 
 Auth::routes();
     Route::get('/',[EcommerceController::class, 'index'])->name('ecommerce.index');
+    Route::post('/commandes', [CommandesController::class, 'store'])->name('admin.commandes.store');
+
 
     Route::group(['middleware' => 'auth'], function () {
 
@@ -48,7 +50,7 @@ Auth::routes();
 
             Route::prefix('commandes')->group(function () { 
                 Route::get('/', [CommandesController::class, 'index'])->name('admin.commandes.index');
-                Route::post('/', [CommandesController::class, 'store'])->name('admin.commandes.store');
+                // Route::post('/', [CommandesController::class, 'store'])->name('admin.commandes.store');
                 Route::post('/update/{id}', [CommandesController::class, 'update'])->name('admin.commandes.update');
             });
 

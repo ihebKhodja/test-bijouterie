@@ -16,7 +16,7 @@ class ProduitsController extends Controller
         try {
             
             $produits = Produits::all();
-            return view('admin.produits.index', ['produits'=>$produits]);
+            return view('admin.produits.index');
 
 
         } catch (\Exception $e) {
@@ -55,7 +55,7 @@ class ProduitsController extends Controller
                     'reference' => $row['reference'],
                     'designation' => $row['designation'],
                     'quantite' => $row['quantite'],
-                    'image' => '',
+                    'image' => '../../../assets/img/products/2.png',
                     'categorie_id' => Categories::where('name', $row['categorie_name'])->value('id'),
                     'matiere_id' => Matieres::where('name', $row['matiere_name'])->value('id'),
                     'prix_achat_gramme' => $row['prix_achat_gramme'],

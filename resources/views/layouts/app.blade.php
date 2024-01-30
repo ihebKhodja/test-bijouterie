@@ -12,10 +12,13 @@
     <!-- ===============================================-->
     <title>Phoenix</title>
 
-
+    
     <!-- ===============================================-->
     <!--    Favicons-->
     <!-- ===============================================-->
+    @yield('stylesheet')
+
+    
     <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/img/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/img/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/img/favicons/favicon-16x16.png">
@@ -41,7 +44,6 @@
     <link href="../../../assets/css/theme.min.css" type="text/css" rel="stylesheet" id="style-default">
     <link href="../../../assets/css/user-rtl.min.css" type="text/css" rel="stylesheet" id="user-style-rtl">
     
-   @yield('stylesheet')
    
     <script>
       var phoenixIsRTL = window.config.config.phoenixIsRTL;
@@ -227,7 +229,9 @@
                                 <img class="rounded-circle " src="../../../assets/img/team/72x72/57.webp" alt="" />
 
                               </div>
-                              <h6 class="mt-2 text-black">Jerry Seinfield</h6>
+                              @if(auth()->check())
+                                <h6 class="mt-2 text-black">{{ Auth::user()->name }}</h6>
+                              @endif
                             </div>
                             <div class="mb-3 mx-3">
                               <input class="form-control form-control-sm" id="statusUpdateInput" type="text" placeholder="Update your status" />
@@ -235,8 +239,8 @@
                           </div>
                           <div class="overflow-auto scrollbar" style="height: 10rem;">
                             <ul class="nav d-flex flex-column mb-2 pb-1">
-                              <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="user"></span><span>Profile</span></a></li>
-                              <li class="nav-item"><a class="nav-link px-3" href="#!"><span class="me-2 text-900" data-feather="pie-chart"></span>Dashboard</a></li>
+                              {{-- <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="user"></span><span>Profile</span></a></li> --}}
+                              <li class="nav-item"><a class="nav-link px-3" href="{{route('admin.produits')}}"><span class="me-2 text-900" data-feather="pie-chart"></span>Dashboard</a></li>
                               <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="lock"></span>Posts &amp; Activity</a></li>
                               <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="settings"></span>Settings &amp; Privacy </a></li>
                               <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="help-circle"></span>Help Center</a></li>
@@ -245,10 +249,17 @@
                           </div>
                           <div class="card-footer p-0 border-top">
                             <ul class="nav d-flex flex-column my-3">
-                              <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="user-plus"></span>Add another account</a></li>
+                              <li class="nav-item"><a class="nav-link px-3" href="{{route('register')}}"> <span class="me-2 text-900" data-feather="user-plus"></span>Add another account</a></li>
                             </ul>
                             <hr />
-                            <div class="px-3"> <a class="btn btn-phoenix-secondary d-flex flex-center w-100" href="#!"> <span class="me-2" data-feather="log-out"> </span>Sign out</a></div>
+                            <form c action="{{ route('logout') }}" method="POST">
+                                @csrf
+                              <button class="btn btn-phoenix-secondary d-flex flex-center w-100" type="submit">
+                                  <a> Sign out <span class="me-2" data-feather="log-out">  {{ __('Logout') }}
+                                    </span></a>
+                              </button>
+                            </form>
+                            {{-- <div class="px-3"> <a class="btn btn-phoenix-secondary d-flex flex-center w-100" href="#!"> <span class="me-2" data-feather="log-out"> </span>Sign out</a></div> --}}
                             <div class="my-2 text-center fw-bold fs--2 text-600"><a class="text-600 me-1" href="#!">Privacy policy</a>&bull;<a class="text-600 mx-1" href="#!">Terms</a>&bull;<a class="text-600 ms-1" href="#!">Cookies</a></div>
                           </div>
                         </div>

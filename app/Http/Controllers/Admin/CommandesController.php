@@ -66,6 +66,7 @@ class CommandesController extends Controller
             $produit = Produits::findOrFail($produitId);
             $produit->increment('quantite', $commande->quantite);
         }
+            return redirect()->back();
         
         return ['success'=>true, 'message'=>'updated succesfuly'];
 

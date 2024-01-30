@@ -26,7 +26,7 @@
                         </a>
                         <!-- more inner pages-->
                       </li>
-                      {{-- <li class="nav-item"><a class="nav-link" href="../../../dashboard/project-management.html" data-bs-toggle="" aria-expanded="false">
+                      <li class="nav-item"><a class="nav-link" href="../../../dashboard/project-management.html" data-bs-toggle="" aria-expanded="false">
                           <div class="d-flex align-items-center"><span class="nav-link-text">Project management</span>
                           </div>
                         </a>
@@ -43,7 +43,7 @@
                           </div>
                         </a>
                         <!-- more inner pages-->
-                      </li> --}}
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -83,6 +83,12 @@
                               </a>
                               <!-- more inner pages-->
                             </li>
+                            <li class="nav-item"><a class="nav-link {{ request()->is('admin/commandes') ? 'active' : '' }}" href={{url('/admin/commandes')}} data-bs-toggle="" aria-expanded="false">
+                                <div class="d-flex align-items-center"><span class="nav-link-text">Orders</span>
+                                </div>
+                              </a>
+                              <!-- more inner pages-->
+                            </li>
                             {{-- <li class="nav-item"><a class="nav-link" href="../../../apps/e-commerce/admin/customers.html" data-bs-toggle="" aria-expanded="false">
                                 <div class="d-flex align-items-center"><span class="nav-link-text">Customers</span>
                                 </div>
@@ -95,12 +101,6 @@
                               </a>
                               <!-- more inner pages-->
                             </li> --}}
-                            <li class="nav-item"><a class="nav-link {{ request()->is('/admin/commandes') ? 'active' : '' }}" href={{url('/admin/commandes')}} data-bs-toggle="" aria-expanded="false">
-                                <div class="d-flex align-items-center"><span class="nav-link-text">Orders</span>
-                                </div>
-                              </a>
-                              <!-- more inner pages-->
-                            </li>
                             {{-- <li class="nav-item"><a class="nav-link" href="../../../apps/e-commerce/admin/order-details.html" data-bs-toggle="" aria-expanded="false">
                                 <div class="d-flex align-items-center"><span class="nav-link-text">Order details</span>
                                 </div>
@@ -500,7 +500,7 @@
                         <img class="rounded-circle " src="../../../assets/img/team/72x72/57.webp" alt="" />
 
                       </div>
-                      <h6 class="mt-2 text-black">Jerry Seinfield</h6>
+                      <h6 class="mt-2 text-black">{{ Auth::user()->name }}</h6>
                     </div>
                     <div class="mb-3 mx-3">
                       <input class="form-control form-control-sm" id="statusUpdateInput" type="text" placeholder="Update your status" />
@@ -509,7 +509,7 @@
                   <div class="overflow-auto scrollbar" style="height: 10rem;">
                     <ul class="nav d-flex flex-column mb-2 pb-1">
                       <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="user"></span><span>Profile</span></a></li>
-                      <li class="nav-item"><a class="nav-link px-3" href="#!"><span class="me-2 text-900" data-feather="pie-chart"></span>Dashboard</a></li>
+                      <li class="nav-item"><a class="nav-link px-3" href="{{route('admin.produits')}}"><span class="me-2 text-900" data-feather="pie-chart"></span>Dashboard</a></li>
                       <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="lock"></span>Posts &amp; Activity</a></li>
                       <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="settings"></span>Settings &amp; Privacy </a></li>
                       <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="help-circle"></span>Help Center</a></li>
