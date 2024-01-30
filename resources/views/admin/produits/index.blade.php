@@ -190,7 +190,10 @@
               
               ],
         });
+        $(document).on('click','.close',function(){
+                modalEdit.modal('hide');
 
+        })
         $(document).on('click','.btn-edit',function(){
           
           var rowData =  table.row($(this).parents('tr')).data()
@@ -207,9 +210,7 @@
             modalEdit.modal('show')
         })
 
-        modalEdit.on('click', 'e.close', function (eventObject) {
-          modalEdit.modal('hide');
-        });
+       
 
         btnUpdate.click(function(){
       
